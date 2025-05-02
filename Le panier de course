@@ -4,40 +4,100 @@
   <meta charset="UTF-8">
   <title>Panier de Courses</title>
   <style>
-  
-     body { 
-  background-color: #fd3a5a; 
-  font-family: Arial;
-  padding: 20px;}
+    body {
+      background: linear-gradient(135deg, #e0f7fa, #fff);
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
-    .article { margin-bottom: 10px; }
-    #panier { margin-top: 20px; }
-    button { margin-left: 5px; }
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #00796b;
+    }
+
+    .article {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+      padding: 10px;
+      background-color: #e0f2f1;
+      border-radius: 10px;
+    }
+
+    button {
+      padding: 6px 12px;
+      background-color: #00796b;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #004d40;
+    }
+
+    #panier {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    #panier li {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      margin: 5px 0;
+      background-color: #f1f8e9;
+      border-radius: 8px;
+    }
+
+    p {
+      font-size: 18px;
+      font-weight: bold;
+      text-align: right;
+      color: #388e3c;
+    }
   </style>
 </head>
 <body>
 
-  <h1>Simulateur de Panier de Courses</h1>
+  <div class="container">
+    <h1>Panier de Courses</h1>
 
-  <div class="article">
-    <span>le lait - 1000frs</span>
-    <button onclick="ajouterArticle('le lait', 1000)">Ajouter</button>
-  </div>
-  <div class="article">
-    <span>Pain - 150frs</span>
-    <button onclick="ajouterArticle('Pain',150 )">Ajouter</button>
-  </div>
-  <div class="article">
-    <span>le beignets - 50frs</span>
-    <button onclick="ajouterArticle('beignet', 50)">Ajouter</button>
-  </div>
+    <div class="article">
+      <span>le lait - 1000frs</span>
+      <button onclick="ajouterArticle('le lait', 1000)">Ajouter</button>
+    </div>
+    <div class="article">
+      <span>Pain - 150frs</span>
+      <button onclick="ajouterArticle('Pain', 150)">Ajouter</button>
+    </div>
+    <div class="article">
+      <span>beignet - 50frs</span>
+      <button onclick="ajouterArticle('beignet', 50)">Ajouter</button>
+    </div>
 
-  <h2>le panier</h2>
-  <ul id="panier"></ul>
-  <p>Total: <span id="total">0</span> frs</p>
+    <h2>le Panier</h2>
+    <ul id="panier"></ul>
+    <p>Total : <span id="total">0</span> frs</p>
+  </div>
 
   <script>
+  alert ('Bonjour');
+  
     let panier = [];
+
     function ajouterArticle(nom, prix) {
       panier.push({ nom, prix });
       afficherPanier();
@@ -52,16 +112,15 @@
       const ul = document.getElementById('panier');
       ul.innerHTML = '';
       let total = 0;
+
       panier.forEach((item, index) => {
         total += item.prix;
         const li = document.createElement('li');
-        li.textContent = `${item.nom} - ${item.prix}frs`;
-        const btn = document.createElement('button');
-        btn.textContent = 'Supprimer';
-        btn.onclick = () => supprimerArticle(index);
-        li.appendChild(btn);
+        li.innerHTML = `${item.nom} - ${item.prix}frs
+          <button onclick="supprimerArticle(${index})">Supprimer</button>`;
         ul.appendChild(li);
       });
+
       document.getElementById('total').textContent = total.toFixed(2);
     }
   </script>
