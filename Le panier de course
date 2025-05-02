@@ -5,7 +5,11 @@
   <title>Panier de Courses</title>
   <style>
   
-    body { font-family: Arial; padding: 20px; }
+     body { 
+  background-color: #fd3a5a; 
+  font-family: Arial;
+  padding: 20px;}
+
     .article { margin-bottom: 10px; }
     #panier { margin-top: 20px; }
     button { margin-left: 5px; }
